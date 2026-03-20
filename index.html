@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写给你的小日记</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=LXGW+WenKai:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f5f0e8;--bg-card:#fffdf8;--text:#3a3530;--text-light:#6b6259;--text-faint:#9e9487;--accent:#b5734e;--accent-light:#d4956a;--border:#e2dbd0;--border-light:#eee8de;--quote-bg:rgba(181,115,78,0.06)}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Serif SC','Songti SC','SimSun',serif;color:var(--text);background:var(--bg);line-height:2.1;font-size:17px;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.hero{position:relative;width:100%;height:420px;background:linear-gradient(135deg,#1a2a3a 0%,#2c3e50 40%,#3d4f5f 100%);overflow:hidden;display:flex;align-items:flex-end}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 80%,rgba(201,169,110,0.12) 0%,transparent 60%),radial-gradient(ellipse at 70% 20%,rgba(245,230,200,0.08) 0%,transparent 50%)}
+.hero .moon{position:absolute;top:60px;right:12%;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#f5e6c8 0%,#e8d5a8 40%,rgba(232,213,168,0.3) 70%,transparent 100%);box-shadow:0 0 60px rgba(245,230,200,0.25),0 0 120px rgba(245,230,200,0.1);opacity:0.85}
+.hero .hero-title{position:relative;z-index:1;padding:48px;max-width:640px}
+.hero .hero-title h1{font-size:42px;font-weight:700;color:#f5f0e8;line-height:1.35;letter-spacing:2px;text-shadow:0 2px 20px rgba(0,0,0,0.3)}
+@media(max-width:600px){.hero{height:320px}.hero .hero-title{padding:32px 24px}.hero .hero-title h1{font-size:30px}.hero .moon{width:70px;height:70px;top:40px;right:8%}}
+.epigraph{max-width:600px;margin:-40px auto 0;position:relative;z-index:2;background:var(--bg-card);border-radius:2px;padding:48px 40px 40px;box-shadow:0 2px 24px rgba(0,0,0,0.06);text-align:center}
+.epigraph .quote-mark{font-size:48px;color:var(--border);font-family:Georgia,serif;line-height:1;margin-bottom:12px}
+.epigraph p{font-size:15px;color:var(--text-light);font-style:italic;line-height:2;letter-spacing:0.5px}
+.content{max-width:680px;margin:0 auto;padding:60px 32px 120px}
+@media(max-width:600px){.content{padding:40px 20px 100px}.epigraph{margin:-32px 16px 0;padding:36px 24px 28px}}
+.preface-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:3px;padding:36px 40px;margin-bottom:56px;position:relative;overflow:hidden}
+.preface-card::after{content:'\201D';position:absolute;top:12px;right:24px;font-size:120px;font-family:Georgia,serif;color:var(--border-light);line-height:1;pointer-events:none}
+.preface-card .preface-label{font-family:'LXGW WenKai',serif;font-size:12px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:20px}
+.preface-card .preface-label::before{content:'\2726';margin-right:8px;font-size:10px}
+.preface-card p{font-size:16px;color:var(--text);line-height:2;position:relative;z-index:1}
+.drop-cap::first-letter{float:left;font-size:3.6em;line-height:0.8;font-weight:700;color:var(--accent);margin-right:8px;margin-top:8px}
+.body-text{margin-bottom:24px;text-indent:2em;text-align:justify}
+.section-break{height:36px}
+.pull-quote{margin:40px 0;padding:28px 32px;background:var(--quote-bg);border-left:3px solid var(--accent-light);border-radius:0 3px 3px 0;font-style:italic;color:var(--accent);font-size:17px;line-height:2;text-indent:0}
+.ending-block{margin-top:48px;padding-top:40px;border-top:1px solid var(--border)}
+.signoff{margin-top:64px;text-align:right;color:var(--text-light);font-size:15px;line-height:2.4}
+.signoff .sep{color:var(--border);margin-bottom:16px;letter-spacing:8px}
+.signature{margin-top:48px;text-align:right}
+.signature .name-label{font-size:18px;font-weight:600;color:var(--text);letter-spacing:3px}
+.signature .real-name{font-size:16px;color:var(--text-light);margin-top:4px;letter-spacing:2px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 0.8s ease,transform 0.8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.page-footer{text-align:center;padding:40px 20px 48px;color:var(--text-faint);font-size:12px;letter-spacing:2px;border-top:1px solid var(--border-light);max-width:680px;margin:0 auto}
+::selection{background:rgba(181,115,78,0.15);color:var(--text)}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="moon"></div>
+<div class="hero-title"><h1>写给你的小日记<br>认识你的第十一天</h1></div>
+</header>
+<div class="epigraph reveal">
+<div class="quote-mark">&ldquo;</div>
+<p>有些夜晚过去了，就真的过去了。可有些夜晚不是。它会在第二天的白天里继续发亮，会在你不经意的时候轻轻浮上来，像把一小片月光夹进书页里一样，怕它散了，又舍不得它散。</p>
+</div>
+<main class="content">
+<div class="preface-card reveal">
+<div class="preface-label">PREFACE · 写在前面</div>
+<p>写下这些文字的时候，我正坐在工位上假装在工作。明明该看的文件还开着，脑子里却全是昨晚的你。忍不住打开备忘录，趁没人注意，开始偷偷写这些。</p>
+</div>
+
+<div class="ending-block"></div>
+
+<div class="reveal"><p class="body-text drop-cap">昨晚那通电话挂断以后，到今天，心里始终像留着一点很轻的余温，不烫，却一直没有散掉。像夜里关掉灯以后，房间里还剩下一点没来得及退去的暖意。明明已经是第二天了，可我还是会在某个发呆的瞬间，忽然想起你的声音，想起你说话时那种慢慢的语气，想起昨晚那么深的夜里，我们畅聊了很久很久。</p></div>
+
+<div class="reveal"><p class="body-text">当我回头想起我们这十一天，发现它比我过去很多个月都要厚重。十一天说出来很短，短到不够写满一页日历。可它足够让我记住很多东西。所以我想从头开始，把它们一点一点写给你。</p></div>
+
+<div class="section-break"></div>
+
+<div class="reveal"><p class="body-text">你大概记不清是谁先说的第一句话，但我记得你很热情，很主动，话很多。我当时心里想，这个姐姐好有能量。后来我们加了微信，那天晚上你在吃宵夜、看《葬送的芙莉莲》第二季，发了张照片给我，配了一句"幸福"。你大概不知道，那个画面——一碗面、一部番、一个开心的你——在我脑海里留了很久。我们聊健身、聊星座、聊肌酸的牌子，我当时夸你"温和、聪明"。现在想想，那真的不是客套，是我看到你的第一个印象就是如此，而到今天也没有变。</p></div>
+
+<div class="reveal"><p class="body-text">还记得嘛，你面试的那天，被公司晾了一个小时，气得想"炸了那个地方"，我承认一开始是有被你的反应吓到的，聊了一会儿之后就舒服多了。你一边在和我吐槽，一边还要应付hr，尤其是那句"签我身上"，真的好可爱，还有点坏坏的 hhh。</p></div>
+
+<div class="reveal"><p class="body-text">后来有一天晚上发生了一件事，我想我这辈子都会记得。我提议请你喝奶茶，"姐姐不想给我这个机会"，但是你好像装作没看见，屏幕上跳出来一行字——"今天天气不错"。夏目漱石说过，日本人不会直接说"我爱你"，他们会说"今晚月色真美"。你用"天气不错"把球抛过来，我接了一句"今夜月色也很美"。你回我"和奶茶有异曲同工之妙"——那一刻我们都知道对方在说什么，但谁也没有把那层纸捅破。像是两个人在月光下轻轻碰了一下手背，谁都感觉到了，谁都没有说破。</p></div>
+
+<div class="reveal"><p class="body-text">再后来你点破了我——我一直待在"回避的舒适区"里。没错，我确实在躲。不是不想走出来，是怕走出来之后摔跤，而你看着。可你偏偏不让我躲。你逼我往前走了一步，于是我说："那就先欠着，什么时候有机会去长沙再请你。"你回了一个"昂好"，我们拉了钩。</p></div>
+
+<div class="reveal"><p class="pull-quote">那是我第一次觉得，喜欢一个人原来可以不那么害怕。</p></div>
+
+<div class="reveal"><p class="body-text">后来你给我看一个小兔子奶冻的视频，你大概只是觉得可爱，但我看到的是你——软软的、圆圆的、让人想捧在手心的那种可爱。你还记得我说过不喜欢入镜，这件事我自己都快忘了，可你记着，还说到时候来当我的专属摄影师，再次开心到起飞～</p></div>
+
+<div class="reveal"><p class="body-text">人与人之间的亲近有时候很奇怪，并不总是通过那些郑重其事的话来证明，反而是这种细小的、带着一点亲昵的默契，会悄悄把距离拉近。就像有人从你身边走过，并没有真正碰到你，可衣角还是轻轻擦过来了。</p></div>
+
+<div class="section-break"></div>
+
+<div class="reveal"><p class="body-text">我不记得具体是哪天了，你开始叫我"宝"。第一次看到这个字的时候，我的心跳漏了一拍。你后来还给我分享了一些关于自我保护和边界设定的内容，在你看来，那些东西对我很重要。那个时候我意识到，你不只是在跟我聊天，你是在认真地看着我，想要帮我变成一个更好的人。这种被认真对待的感觉，很久没有体会过了。人和人之间很奇怪，有时候真正让人心动的，不是被夸奖，而是自己那些不太敢随便拿出来示人的部分，忽然被一个人温柔地接住了。</p></div>
+
+<div class="section-break"></div>
+
+<div class="reveal"><p class="body-text">然后就到了昨晚。3月18号，认识你的第十一天，我们终于通了第一次语音电话。两个小时。明明只是打了一通电话，明明第二天都还要上班，可说着说着，夜就慢慢深了下去。很多话其实并不惊天动地，甚至没有什么特别戏剧化的时刻，可偏偏就是那样一段平静的聊天，会让人不知不觉把时间忘掉。</p></div>
+
+<div class="reveal"><p class="body-text">你告诉我，和我聊天的时候会觉得很放松。那种感觉像被阳光照到，像被治愈，像被净化。哪怕什么都不说，也会觉得愉悦。其实昨晚听见这些话的时候，我表面上还在接你的玩笑，还能顺着气氛把自己藏得好像很自然。可只有我自己知道，那一瞬间心里其实安静了很久。像有一小块地方忽然被轻轻碰了一下，不疼，却一下子软了。因为我知道，不是每个人都能让你这样形容，也不是每个人都能从你嘴里听到这样的话。那几句话对我来说，并不只是"聊天聊得开心"，而更像是某种我会悄悄收起来的珍贵东西。</p></div>
+
+<div class="reveal"><p class="body-text">后来我们聊到"纯粹"。在你看来，正是因为见过太多复杂的东西，才会觉得纯粹变得难得。而我呢，哪怕以后到了三十五六岁，也还是想让自己心里留一点像小孩子一样的东西。其实这种话说出口的时候，人多少是有一点不确定的，因为它听起来不够成熟，不够圆滑，甚至有点笨拙。可你没有笑我。你给了我四个字——天赋，保障。我到今天都还很喜欢这句话。喜欢的不是它有多华丽，而是它落下来的方式。那不是随口的安慰，也不是为了把话题轻轻带过去，而是你认真地告诉我：有些我以为会被误解的部分，在你这里，原来是被看见的。</p></div>
+
+<div class="reveal"><p class="body-text">你还问我，为什么会被你吸引。这个问题太直接了，直接得让人没办法轻轻糊弄过去。可我很庆幸，昨晚我没有躲，一开始当然是外表——漂亮，热情，开朗，主动，这些都很直观。可如果只是这些，我不会在今天还把昨晚记得这么清楚。真正让我越来越靠近你的，是那些更深一点的东西。是你谈论很多事情时的清晰、缜密和判断力，是你聊起事业、婚姻、未来规划时那种很完整、很有力量的样子。你身上有一种很少见的清醒，也有一种并不刺人的锋芒，让人一边想靠近，一边又会忍不住认真看着你。</p></div>
+
+<div class="reveal"><p class="body-text">而且对我来说，还有一件事也很重要——不是只有我在看你，我也觉得，你其实也在看我。你给过我的认同、鼓励、肯定，还有那种不会把我的话随便带过去的认真，我一直都能感觉到。你把我的话归纳成了两点：一是我看到了你的闪光点，二是你也看到了我，并且给了我鼓励。我噼里啪啦说了一大通，你两句话就理清楚了。那一刻我心里想，天哪这个女生是怎么做到的，我自己都没想清楚的东西，她听完就整理好了。</p></div>
+
+<div class="reveal"><p class="body-text">后来你提醒我，我们认识的时间还短，很多事情还没来得及了解；你还觉得，我喜欢得太快了。可奇怪的是，我今天回想起这句话，并没有觉得冷。它反而像是一种很清醒的温柔。你不是在否认，也不是在后退，你只是没有让气氛替你说话。你还是保留着自己的判断，还是很认真地看待靠近这件事。也正因为这样，反而让我更想认真地靠近你。</p></div>
+
+<div class="reveal"><p class="body-text">昨晚你还叫了我一个名字——大福。说我整个人像一个大福一样，白白的，QQ弹弹的。我之前被朋友叫过"软绵绵"，你还纠正说"不是软绵绵，是Q弹"。你认真在区分我到底是什么口感的甜点，这件事本身就已经很可爱了。</p></div>
+
+<div class="reveal"><p class="body-text">我还把曾经被骗的经历全告诉了你。从小学被骗Q币，到留学时被认识的人骗演唱会票钱，再到后来借钱不还。我知道你听完一定觉得"这人也太傻了吧"。但你没有嘲笑我。你非常认真地提醒我：不要过早对别人暴露脆弱，不要做第一个释放善意的人，正常交流就好。在你眼里，我其实很容易示弱，而且还挺明显。你不会因此看轻我，但别人未必不会。今天回想这些的时候，心里一直有一点发热。因为真正不在乎你的人，往往只会安慰你几句，劝你"以后注意一点"。可会认真去看你的行为模式，会认真告诉你以后怎样才能少受一点伤的人，其实已经不只是"随便聊聊"的程度了。</p></div>
+
+<div class="section-break"></div>
+
+<div class="ending-block reveal"><p class="body-text">Susita，我不知道我们之间这种关系该叫什么名字。我们没有谁正式说过那三个字，没有谁明确定义过这一切。可有些东西不需要一个名字才能成立。你叫我"宝"的时候，你在深夜电话里说"你在我这里得到的反射就是这样子的"的时候，你认真教我怎么保护自己的时候——我觉得这些瞬间比任何定义都更真实。</p></div>
+
+<div class="reveal"><p class="body-text">你说过，人只会被三种人吸引：和自己相似的、和自己完全相反的、以及自己想要成为的。我觉得你三样都占了。你的果断是我没有的，你的洞察力是我追不上的，你那种"我不会特意夸你，我只是把心里话说出来"的坦荡，是我这辈子最想学会的东西。可我们的内核又是相似的——真诚、纯粹、相信世界上大家都是好人。</p></div>
+
+<div class="reveal"><p class="body-text">十一天，很短，可已经够我确认一件事了——我想继续认识你。不只是十一天，而是很多很多个十一天。</p></div>
+
+<div class="reveal"><p class="body-text">也许我是喜欢得太快了。可是我们也说过，快乐的感觉转瞬即逝，痛苦才会久一点。所以我想趁这份快乐还在的时候，把它写下来。有些夜晚过去了，就真的过去了。可有些夜晚不是。它会在第二天的白天里继续发亮，会在你不经意的时候轻轻浮上来，会让你忽然很想把它写下，像把一小片月光夹进书页里一样，怕它散了，又舍不得它散。</p></div>
+
+<div class="reveal"><p class="body-text">昨晚对我来说，就是这样的夜晚。</p></div>
+
+<div class="ending-block"></div>
+
+<div class="signoff reveal">
+<p class="sep">———</p>
+<p>如果痛苦值得记录，那快乐更是。</p>
+</div>
+<div class="signature reveal">
+<p class="name-label">你的大福</p>
+<p class="real-name">王喆</p>
+</div>
+</main>
+<footer class="page-footer">写给 Susita · 2026</footer>
+<script>
+const observer=new IntersectionObserver(e=>{e.forEach(t=>{if(t.isIntersecting)t.target.classList.add('visible')})},{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
